@@ -1,25 +1,32 @@
-<template web>
-  <section>
-    <ul>
-      <li v-for="(item, index) in languages" :key="index">{{ item }}</li>
-    </ul>
-  </section>
-</template>
-<template native>
-  <StackLayout>
-    <VxpListView :items="languages">
-      <v-template>
-        <Label :text="item" />
-      </v-template>
-    </VxpListView>
-  </StackLayout>
+<template>
+  <VxpListView :items="itemList" :itemSelect="itemConditions">
+    <v-template slot-scope="{ item }" slot="showIfStateFalse">
+      <Label :text="item.text" />
+    </v-template>
+
+    <v-template slot-scope="{ item }" slot="showIfStateTrue">
+      <Label :text="item.text" />
+    </v-template>
+  </VxpListView>
 </template>
 
 <script>
 export default {
+  name: "VxpLisxxtViewDoc",
+  components: {
+    "v-template": null
+  },
   data() {
     return {
-      languages: ["Javascript", "Angular", "React", "C#", "Php", "HTML"]
+      itemList: [
+        { text: "Item 1", state: true },
+        { text: "Item 2", state: true },
+        { text: "Item 3", state: false }
+      ],
+      itemConditions: {
+        showIfStateTrue: "item.state === true",
+        showIfStateFalse: "item.state === false"
+      }
     };
   }
 };
