@@ -1,22 +1,18 @@
 <template>
-  <Page>
+  <Page :actionBarHidden="true">
     <StackLayout>
-      <Label text="Main Page" />
-      <VxpButton text="goToDevices" @tap="redirectTo('/devices')" />
+      <Label
+        text="This is an main page"
+        :textWrap="true"
+        horizontalAlignment="center"
+        verticalAlignment="center"
+      />
     </StackLayout>
   </Page>
 </template>
 <script>
 import commonMixins from "@/mixins/common";
 export default {
-  mixins: [commonMixins],
-  data() {
-    return {
-      value: false,
-      textViewInput: "",
-      currentProgress: 49,
-      maxValueProgress: 100
-    };
-  }
+  mixins: [commonMixins]
 };
 </script>

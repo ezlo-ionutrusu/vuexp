@@ -1,33 +1,42 @@
-<template>
-  <VxpListView :items="itemList" :itemSelect="itemConditions">
-    <v-template slot-scope="{ item }" slot="showIfStateFalse">
-      <Label :text="item.text" />
-    </v-template>
-
-    <v-template slot-scope="{ item }" slot="showIfStateTrue">
-      <Label :text="item.text" />
-    </v-template>
-  </VxpListView>
+<template web>
+  <section v-if="!!items">
+    <ul>
+      <li
+        v-for="(item, index) in items"
+        :key="index"
+        @click="itemTap(item, index)"
+      >
+        <div class="text">{{ item }}</div>
+      </li>
+    </ul>
+  </section>
 </template>
-
+<template native>
+  <StackLayout orientation="horizontal" v-if="!!items">
+    <ListView
+      for="(item, index) in items"
+      @itemTap="({ item, index }) => itemTap(item, index)"
+    >
+      <v-template>
+        <StackLayout>
+          <Label :text="item" />
+        </StackLayout>
+      </v-template>
+    </ListView>
+  </StackLayout>
+</template>
 <script>
 export default {
-  name: "VxpLisxxtViewDoc",
-  components: {
-    "v-template": null
+  name: "list",
+  props: {
+    items: {
+      type: Array
+    }
   },
-  data() {
-    return {
-      itemList: [
-        { text: "Item 1", state: true },
-        { text: "Item 2", state: true },
-        { text: "Item 3", state: false }
-      ],
-      itemConditions: {
-        showIfStateTrue: "item.state === true",
-        showIfStateFalse: "item.state === false"
-      }
-    };
+  methods: {
+    itemTap(item, index) {
+      this.$emit("onItemTap", item, index);
+    }
   }
 };
 </script>

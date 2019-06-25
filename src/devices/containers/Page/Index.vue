@@ -1,10 +1,9 @@
 <template>
-  <Page>
+  <Page :actionBarHidden="true">
     <StackLayout>
       <VxpLabel text="Devices page" />
-      <VxpButton text="goToMain" @tap="redirectTo('/')" />
       <switch-component />
-      <list-component />
+      <list-component :items="['Js', 'Css', 'Html', 'Php']" />
     </StackLayout>
   </Page>
 </template>
