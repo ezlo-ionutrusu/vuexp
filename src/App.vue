@@ -1,11 +1,11 @@
 <template>
-  <Page :actionBarHidden="true">
-    <DockLayout :stretchLastChild="true">
-      <StackLayout dock="left">
-        <VxpButton text="Main" @tap="redirectTo('/')" />
-        <VxpButton text="Devices" @tap="redirectTo('/devices')" />
+  <Page :actionBarHidden="true" margin="10">
+    <DockLayout>
+      <StackLayout dock="top">
+        <Button text="Main" @tap="redirectTo('/')" class="vxbutton" />
+        <Button text="Devices" @tap="redirectTo('/devices')" class="vxbutton" />
       </StackLayout>
-      <router-view dock="right" />
+      <router-view dock="center" />
     </DockLayout>
   </Page>
 </template>
@@ -15,3 +15,15 @@ export default {
   mixins: [commonMixins]
 };
 </script>
+<style lang="scss">
+.label {
+  font-size: 20px;
+}
+.vxbutton {
+  border-radius: 0 !important;
+  margin-bottom: 10px;
+}
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+</style>

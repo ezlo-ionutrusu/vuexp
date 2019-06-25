@@ -1,12 +1,7 @@
 <template>
   <Page :actionBarHidden="true">
     <StackLayout>
-      <Label
-        text="This is an main page"
-        :textWrap="true"
-        horizontalAlignment="center"
-        verticalAlignment="center"
-      />
+      <Label text="Main Page" class="label" />
     </StackLayout>
   </Page>
 </template>
