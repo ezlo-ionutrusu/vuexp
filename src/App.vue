@@ -1,6 +1,6 @@
 <template>
   <Page :actionBarHidden="true" margin="10">
-    <DockLayout>
+    <DockLayout :stretchLastChild="true">
       <StackLayout dock="top">
         <Button text="Main" @tap="redirectTo('/')" class="vxbutton" />
         <Button text="Devices" @tap="redirectTo('/devices')" class="vxbutton" />
@@ -25,5 +25,8 @@ export default {
 }
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.vxp-dock-layout ul, .vxp-dock-layout li {
+  display: list-item;
 }
 </style>
