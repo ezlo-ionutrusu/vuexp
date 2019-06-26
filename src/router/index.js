@@ -1,5 +1,7 @@
 import MainPage from "@/main/containers/Page/Index";
 import DevicePage from "@/devices/containers/Page/Index";
+import LoginPage from "@/login/containers/Page/Index";
+import LogoutPage from "@/logout/containers/Page/Index";
 
 const routerOptions = {
   mode: "history",
@@ -7,6 +9,10 @@ const routerOptions = {
   routes: [
     {
       path: "/",
+      component: LoginPage
+    },
+    {
+      path: "/home",
       component: MainPage
     },
     {
