@@ -1,25 +1,40 @@
-<template>
+<template web>
   <Frame>
-    <Page :actionBarHidden="false" margin="10">
-      <ActionBar title="Start here" />
-      <DockLayout :stretchLastChild="true">
-        <StackLayout orientation="horizontal">
-          <StackLayout
-            dock="top"
-            :visibility="handleMenuVisibility"
-            v-if="handleMenuVisibility"
-          >
-            <Button text="Main" @tap="redirectTo('/home')" class="vxbutton" />
-            <Button
-              text="Devices"
-              @tap="redirectTo('/devices')"
-              class="vxbutton"
-            />
-            <Button text="Logout" @tap="doLogout()" class="vxbutton" />
-          </StackLayout>
-          <router-view dock="center" />
+    <Page :actionBarHidden="false">
+      <ActionBar title="Vuexp-App" />
+      <GridLayout columns="auto, *" rows="*, *">
+        <StackLayout
+          row="0"
+          col="0"
+          class="left-side"
+          v-if="handleMenuVisibility"
+        >
+          <Button text="Main" @tap="redirectTo('/home')" />
+          <Button text="Devices" @tap="redirectTo('/devices')" />
+          <Button text="Logout" @tap="doLogout()" />
         </StackLayout>
-      </DockLayout>
+        <StackLayout orientation="horizontal" row="0" col="1">
+          <WrapLayout>
+            <router-view dock="center" class="router-class" />
+          </WrapLayout>
+        </StackLayout>
+      </GridLayout>
+    </Page>
+  </Frame>
+</template>
+
+<template native>
+  <Frame>
+    <Page :actionBarHidden="false">
+      <ActionBar title="Vuexp-App" />
+      <StackLayout orientation="vertical">
+        <StackLayout :visibility="handleMenuVisibility">
+          <Button text="Main" @tap="redirectTo('/home')" />
+          <Button text="Devices" @tap="redirectTo('/devices')" />
+          <Button text="Logout" @tap="doLogout()" />
+        </StackLayout>
+        <router-view class="router-class" />
+      </StackLayout>
     </Page>
   </Frame>
 </template>
@@ -65,19 +80,6 @@ export default {
 };
 </script>
 
-<style>
-.label {
-  font-size: 20px;
-}
-.vxbutton {
-  border-radius: 0;
-  margin-bottom: 10px;
-}
-* {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-}
-.vxp-dock-layout ul,
-.vxp-dock-layout li {
-  display: list-item;
-}
+<style lang="scss">
+@import "styles/index.scss";
 </style>

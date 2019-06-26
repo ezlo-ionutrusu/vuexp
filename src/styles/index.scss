@@ -1,0 +1,25 @@
+@import "./helpers";
+body
+{
+    font-family: Arial;
+    font-size:16px;
+}
+.router-class
+{
+    margin:unit(10)
+}
+.h1
+{
+    font-size:unit(20);
+    margin-bottom:unit(5)
+}
+.left-side
+{
+    margin-top:unit(10);
+    button
+    {
+        border-radius:unit(0);
+        box-shadow:none;
+        margin:unit(0)
+    }
+}

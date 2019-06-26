@@ -1,0 +1,146 @@
+$PLATFORM: 'web' !default; // changes with webpack
+
+@function unit($webValue, $nativeValue: $webValue) {
+  @if $PLATFORM == 'android' or $PLATFORM == 'ios' {
+    @return $nativeValue;
+  } @else {
+    @if (str-index(inspect($webValue), '%')) {
+      @return $webValue;
+    } @else {
+      @return $webValue + unquote('px');
+    }
+  }
+}
+$num: 0;
+
+@while $num < 31
+{
+     .pa-#{$num}
+     {
+          padding: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 51
+{
+     .pt-#{$num}
+     {
+          padding-top: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 51
+{
+     .pb-#{$num}
+     {
+          padding-bottom: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 51
+{
+     .pl-#{$num}
+     {
+          padding-left: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 51
+{
+     .pr-#{$num}
+     {
+          padding-right: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 31
+{
+     .ma-#{$num}
+     {
+          margin: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 96
+{
+     .mt-#{$num}
+     {
+          margin-top: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 96
+{
+     .mb-#{$num}
+     {
+          margin-bottom: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 61
+{
+     .ml-#{$num}
+     {
+          margin-left: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+$num: 0;
+
+@while $num < 61
+{
+     .mr-#{$num}
+     {
+          margin-right: unit($num) !important;
+     }
+
+     $num: $num +5;
+}
+
+.ml-auto
+{
+     margin-left: auto !important;
+}
+
+.mr-auto
+{
+     margin-right: auto !important;
+}
+.m-auto
+{
+     margin:auto !important;
+}

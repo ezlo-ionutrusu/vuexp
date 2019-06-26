@@ -1,19 +1,22 @@
 <template>
   <Page :actionBarHidden="true">
     <StackLayout>
-      <VxpLabel text="Please login to continue" class="label" />
+      <VxpLabel text="Please login to continue" class="h1" />
 
-      <VxpLabel text="Username" class="label margin_top_10" />
-      <TextField v-model="username" hint="Your username" />
+      <VxpLabel text="Username" class="label mt-20" />
+      <TextField v-model="username" hint="Your username" class="mt-5" />
 
-      <VxpLabel text="Password" class="label margin_top_10" />
-      <TextField v-model="password" hint="Your password" />
+      <VxpLabel text="Password" class="label mt-20" />
+      <TextField v-model="password" hint="Your password" class="mt-5" />
 
-      <VxpCheckbox class="margin_top_10" />
+      <StackLayout orientation="horizontal" class="mt-20">
+        <VxpCheckbox class="margin_top_10" />
+        <VxpLabel text="Remember me" class="ml-10" />
+      </StackLayout>
 
-      <VxpButton text="Login" @tap="doLogin" class="margin_top_10" />
+      <VxpButton text="Login" @tap="doLogin" class="mt-20" />
 
-      <VxpLabel :text="authLabelText" class="label margin_top_10" />
+      <VxpLabel :text="authLabelText" class="label mt-20" />
     </StackLayout>
   </Page>
 </template>
@@ -59,9 +62,3 @@ export default {
   }
 };
 </script>
-
-<style>
-.margin_top_10 {
-  margin-top: 10pt;
-}
-</style>
