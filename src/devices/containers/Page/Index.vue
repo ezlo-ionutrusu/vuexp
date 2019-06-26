@@ -4,7 +4,7 @@
       <VxpLabel text="Devices page" class="label" />
       <switch-component />
       <list-component :items="['Js', 'Css', 'Html', 'Php']" />
-      <websocket-component />
+      <ws-component />
     </StackLayout>
   </Page>
 </template>
@@ -15,7 +15,7 @@ export default {
   components: {
     "list-component": () => import("@/devices/components/List/Index"),
     "switch-component": () => import("@/devices/components/Switcher/Index"),
-    "websocket-component": () => import("@/devices/components/WebSocket/Index")
+    "ws-component": () => import("@/devices/components/WSocket/Index")
   }
 };
 </script>

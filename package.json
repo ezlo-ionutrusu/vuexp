@@ -25,6 +25,7 @@
     "core-js": "^3.1.4",
     "nativescript-vue": "^2.2.2",
     "nativescript-vue-navigator": "^0.0.3",
+    "nativescript-websockets": "^1.5.3",
     "tns-core-modules": "^5.4.3",
     "vue": "^2.6.10",
     "vue-native-websocket": "^2.0.13",
