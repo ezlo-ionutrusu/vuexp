@@ -31,9 +31,7 @@
     "vue-native-websocket": "^2.0.13",
     "vuex": "^3.1.1",
     "vuexp": "^0.3.0",
-    "vuexp-router": "git+https://github.com/vuexp/vuexp-router.git#development",
-    "websocket": "^1.0.28",
-    "ws": "^7.0.1"
+    "vuexp-router": "git+https://github.com/vuexp/vuexp-router.git#development"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

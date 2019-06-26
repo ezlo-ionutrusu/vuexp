@@ -3,6 +3,7 @@
     <VxpButton :text="'Connect to websocket'" @tap="connectToWebSocket()" />
     <VxpLabel :text="resultOfWebSocket" />
     <VxpLabel :text="responseWebSocket" />
+    <VxpLabel :text="responseTime" />
   </StackLayout>
 </template>
 <script>
@@ -16,8 +17,7 @@ if (process.env.VUE_APP_PLATFORM === "web") {
     reconnectionDelay: 300
   });
 } else {
-  console.log(true);
-  const WS = require("nativescript-websockets");
+  require("nativescript-websockets");
 }
 export default {
   computed: {
@@ -28,13 +28,17 @@ export default {
       if (this.socketData)
         return `Sent ${this.socketData} receveied ${this.responseSocketData}`;
       return "";
+    },
+    responseTime() {
+      return this.timeDiff;
     }
   },
   data() {
     return {
       statusWebSocket: false,
       socketData: null,
-      responseSocketData: null
+      responseSocketData: null,
+      timeDiff: null
     };
   },
   methods: {
@@ -42,17 +46,21 @@ export default {
       return Math.random(1, 1111111).toString();
     },
     connectToWebSocketNative() {
-      const _this = this;
+      var t1, t2;
       var mySocket = new WebSocket("ws://echo.websocket.org", [
         /* "protocol","another protocol" */
       ]);
       mySocket.addEventListener("open", evt => {
         this.socketData = this.getRnd();
         this.statusWebSocket = true;
+        t1 = Date.now();
         evt.target.send(this.socketData);
       });
       mySocket.addEventListener("message", evt => {
         this.responseSocketData = evt.data;
+        t2 = Date.now();
+        this.timeDiff = `Package received in  ${Math.floor(t2 - t1) /
+          1000} seconds`;
         evt.target.close();
       });
       mySocket.addEventListener("close", function(evt) {
@@ -63,14 +71,20 @@ export default {
       });
     },
     connectToWebSocketWeb() {
-      const rnd = this.getRnd();
-      this.socketData = rnd;
-      this.statusWebSocket = true;
-      this.$socket.send(rnd);
-      this.$options.sockets.onmessage = socketData => {
-        const { data } = socketData;
-        this.responseSocketData = data;
-      };
+      if (this.$socket) {
+        const rnd = this.getRnd();
+        this.socketData = rnd;
+        this.statusWebSocket = true;
+        const t1 = Date.now();
+        this.$socket.send(rnd);
+        this.$options.sockets.onmessage = socketData => {
+          const { data } = socketData;
+          this.responseSocketData = data;
+          const t2 = Date.now();
+          this.timeDiff = `Package received in  ${Math.floor(t2 - t1) /
+            1000} seconds`;
+        };
+      }
     },
     connectToWebSocket() {
       if (process.env.VUE_APP_PLATFORM === "web") {
