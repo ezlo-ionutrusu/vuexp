@@ -1,7 +1,6 @@
 import Vue from "nativescript-vue";
 import App from "./App.vue";
-import VuexpRouter from "vuexp-router";
-import routerOptions from "./router";
+import router from "./router";
 import store from "./vuex/store";
 import registerComponents from "./componentRegisterer.native";
 
@@ -12,8 +11,6 @@ Vue.config.silent = false;
 // Vue.config.debug = true;
 
 registerComponents(Vue);
-Vue.use(VuexpRouter);
-const router = new VuexpRouter(routerOptions);
 
 new Vue({
   store,

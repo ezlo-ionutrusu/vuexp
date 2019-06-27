@@ -36,9 +36,11 @@ const routerOptions = {
 const router = new VuexpRouter(routerOptions);
 export default router;
 
-router.beforeEach(async (to, from, next) => {
-  if (!store.getters["auth/getAuthStatus"] && to.path !== "/login") {
-    return next("/login");
-  }
-  next();
-});
+if (process.env.VUE_APP_PLATFORM === "web") {
+  router.beforeEach(async (to, from, next) => {
+    if (!store.getters["auth/getAuthStatus"] && to.path !== "/login") {
+      return next("/login");
+    }
+    next();
+  });
+}
