@@ -66,9 +66,6 @@ export default {
       return output;
     }
   },
-  data() {
-    return {};
-  },
   methods: {
     doLogout() {
       setTimeout(() => {
