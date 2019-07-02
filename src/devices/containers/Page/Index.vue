@@ -1,7 +1,6 @@
 <template>
   <Page :actionBarHidden="true">
     <StackLayout>
-      <VxpLabel text="Devices page" class="label" />
       <switch-component />
       <list-component :items="['Js', 'Css', 'Html', 'Php']" />
       <ws-component />

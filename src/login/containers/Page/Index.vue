@@ -28,8 +28,8 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      username: "",
-      password: "",
+      username: "xxxx",
+      password: "xxx",
       authLabelText: "",
       isAuth: false
     };
@@ -47,16 +47,12 @@ export default {
     doLogin() {
       if (this.username === "" || this.password === "") {
         this.authLabelText = "Please provide proper credentials";
-        setTimeout(() => {
-          this.authLabelText = "";
-        }, 3 * 1000);
+        this.authLabelText = "";
       } else {
         this.authLabelText = "Authenticated";
 
-        setTimeout(() => {
-          this.$store.dispatch("auth/setAuthStatus", true);
-          this.redirectTo("/home");
-        }, 3 * 1000);
+        this.$store.dispatch("auth/setAuthStatus", true);
+        this.redirectTo("/home");
       }
     }
   }

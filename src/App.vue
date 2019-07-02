@@ -68,10 +68,8 @@ export default {
   },
   methods: {
     doLogout() {
-      setTimeout(() => {
-        this.$store.dispatch("auth/setAuthStatus", false);
-        this.redirectTo("/");
-      }, 3 * 1000);
+      this.$store.dispatch("auth/setAuthStatus", false);
+      this.redirectTo("/");
     }
   }
 };

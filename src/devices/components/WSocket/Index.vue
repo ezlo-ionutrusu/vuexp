@@ -1,9 +1,9 @@
 <template>
-  <StackLayout>
+  <StackLayout class="mt-20">
     <VxpButton :text="'Connect to websocket'" @tap="connectToWebSocket()" />
-    <VxpLabel :text="resultOfWebSocket" />
-    <VxpLabel :text="responseWebSocket" />
-    <VxpLabel :text="responseTime" />
+    <VxpLabel :text="resultOfWebSocket" class="mt-10" />
+    <VxpLabel :text="responseWebSocket" class="mt-10" />
+    <VxpLabel :text="responseTime" class="mt-10" />
   </StackLayout>
 </template>
 <script>

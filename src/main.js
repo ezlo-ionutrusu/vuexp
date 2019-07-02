@@ -3,10 +3,10 @@ import App from "~/App.vue";
 import store from "./vuex/store";
 import router from "./router";
 import registerComponents from "./componentRegisterer";
-import PreviewComponent from "preview-component";
+import RepoComponent from "repo-component";
 
 Vue.config.productionTip = false;
-Vue.use(PreviewComponent);
+Vue.use(RepoComponent);
 
 registerComponents(Vue);
 
