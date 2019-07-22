@@ -7,6 +7,6 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: sudo chown -R $USER /usr/local/lib/node_modules
+      - run: sudo chown -R $user /usr/local/lib/node_modules
       - run: npm i -g nativescript
       - run: npm -- run setup-webpack-config && tns build android --bundle --env.production && npm run remove-webpack-config
