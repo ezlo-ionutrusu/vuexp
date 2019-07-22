@@ -2,6 +2,8 @@ version: 2
 
 default_config: &default_config
   working_directory: ~/circleci/tns-circleci-example
+  docker:
+    - image: circleci/node:11
   environment:
     ANDROID_HOME: '/usr/local/share/android-sdk'
 
