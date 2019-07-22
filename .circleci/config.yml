@@ -2,8 +2,8 @@ version: 2
 
 default_config: &default_config
   working_directory: ~/circleci/tns-circleci-example
-  docker:
-    - image: circleci/node:11
+  macos:
+    xcode: '9.3.0'
   environment:
     ANDROID_HOME: '/usr/local/share/android-sdk'
 
@@ -17,7 +17,12 @@ jobs:
           command: |
             curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
             # Fetch cocoapods specs from S3 instead of github
-
+      - run:
+          name: Setup system dependencies
+          command: |
+            brew update
+            brew cask install android-sdk
+            echo y | $ANDROID_HOME/tools/bin/sdkmanager "platform-tools" "platforms;android-25" "build-tools;25.0.2" "extras;android;m2repository" "extras;google;m2repository"
       - restore_cache:
           key: npm-cache-{{ checksum "./package-lock.json" }}
       - run:
@@ -34,8 +39,19 @@ jobs:
           name: 'Rebuild Node SASS bindings'
           command: npm rebuild node-sass --force
       - run:
+          name: 'Pre-launch iOS Simulator'
+          command: xcrun instruments -w "iPhone 8 (11.2) [" || true
+      - run:
+          name: 'Prepare ios'
+          # Hack -> git log outputed as error
+          command: npx tns prepare ios || echo "ios build done"
+      - run:
           name: 'Prepare Android'
           command: npx tns prepare android
+      - run:
+          name: 'Build iOS'
+          command: |
+            ./scripts/build_ios.sh org.nativescript.circleciint
       - run:
           name: 'Build Android'
           command: |
