@@ -1,0 +1,32 @@
+version: 2
+
+default_config: &default_config
+  macos:
+    xcode: "9.2.0"
+
+  working_directory: ~/vuexp
+
+
+jobs:
+  setup:
+    <<: *default_config
+
+    steps:
+      - checkout
+
+
+      - run:
+          name: Setup NativeScript
+          command: |
+            npm install
+
+      - run:
+          name: "Build Android"
+          command: |
+            npm run setup-webpack-config && tns build android --bundle --env.production && npm run remove-webpack-config
+
+workflows:
+  version: 2
+  main_workflow:
+    jobs:
+      - setup
