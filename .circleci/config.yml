@@ -7,4 +7,5 @@ jobs:
     steps:
       - checkout
       - run: npm install
+      - run: npm i nativescript
       - run: npm -- run setup-webpack-config && tns build android --bundle --env.production && npm run remove-webpack-config
