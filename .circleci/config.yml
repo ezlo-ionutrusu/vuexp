@@ -46,13 +46,6 @@ jobs:
           # Hack -> git log outputed as error
           command: npx tns prepare ios || echo "ios build done"
       - run:
-          name: 'Prepare Android'
-          command: npx tns prepare android
-      - run:
-          name: 'Build iOS'
-          command: |
-            ./scripts/build_ios.sh org.nativescript.circleciint
-      - run:
           name: 'Build Android'
           command: |
             ./scripts/build_android.sh
