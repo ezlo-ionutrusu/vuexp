@@ -22,7 +22,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "nativescript": "6.0.1",
+    "nativescript": "5.4.2",
     "core-js": "^3.1.4",
     "nativescript-vue": "^2.2.2",
     "nativescript-vue-navigator": "^0.0.3",
